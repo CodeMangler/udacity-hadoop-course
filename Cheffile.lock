@@ -7,7 +7,7 @@ SITE
 PATH
   remote: site-cookbooks/cdh
   specs:
-    cdh (0.1.0)
+    cdh (0.2.0)
 
 DEPENDENCIES
   cdh (>= 0)
