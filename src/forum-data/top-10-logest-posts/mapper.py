@@ -12,12 +12,16 @@ def mapper():
     reader = csv.reader(sys.stdin, delimiter='\t')
     writer = csv.writer(sys.stdout, delimiter='\t', quotechar='"', quoting=csv.QUOTE_ALL)
 
+
+    lines_by_length = {}
     for line in reader:
+    	body = line[4]
+    	lines_by_length[len(body)] = line
+    
+    lengths = sorted(lines_by_length.keys(), reverse=True)[0:10]
 
-        
-        
-        writer.writerow(line)
-
+    for length in reversed(lengths):
+    	writer.writerow(lines_by_length[length])
 
 
 test_text = """\"\"\t\"\"\t\"\"\t\"\"\t\"333\"\t\"\"
