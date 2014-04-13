@@ -38,6 +38,10 @@ template '/usr/local/bin/hs' do
   source 'hs.erb'
 end
 
+template '/usr/local/bin/hsc' do
+  source 'hsc.erb'
+end
+
 directory '/var/lib/hadoop-hdfs/cache/hdfs/dfs/name' do
  owner 'hdfs'
  group 'hadoop'
@@ -46,8 +50,10 @@ directory '/var/lib/hadoop-hdfs/cache/hdfs/dfs/name' do
  recursive true
 end
 
-file '/usr/local/bin/hs' do
-  mode 00755
+['/usr/local/bin/hs', '/usr/local/bin/hsc'].each do |file_name|
+  file file_name do
+    mode 00755
+  end
 end
 
 %w(hadoop-0.20-mapreduce-jobtracker hadoop-0.20-mapreduce-tasktracker hadoop-hdfs-datanode hadoop-mapreduce-historyserver hadoop-yarn-nodemanager hadoop-yarn-resourcemanager).each do |service_name|
